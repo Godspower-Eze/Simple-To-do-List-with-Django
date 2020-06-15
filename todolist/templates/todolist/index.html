@@ -1,23 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>
+{% extends 'todolist/base.html'%}
+{% block content %}
+<div class="container" style="border: 2px solid black; padding:10px; margin-top:10px; width:50%">
+    <h1>
     Home
 </h1>
 <form method="post" action="/" >
     {% csrf_token %}
-    {{ form.task }}
-    <button class="btn btn-danger" type="submit">Add</button>
+    <p class="form-contol">{{ form.task }}</p>
+    <input class="btn btn-info" type="submit" value="Add task">
 </form>
 {% for p in task %}
-<div>
-    <a href="{% url 'update' p.id %}"></a>
-    <p>{{ p.task }}</p>
+<div style="background-color:lemon; margin-top:10px; margin-bottom:10px;">
+    {% if p.completed %}
+    <strike>{{ p.task }}</strike>
+    {% else %}
+    <span>{{ p.task }}</span>
+    {% endif %}
+    <div>
+        <a class="btn btn-info" href="{% url 'update' p.id %}">Update</a>
+        <a  class="btn btn-danger" href="{% url 'delete' p.id %}">Delete</a>
+    </div>
+
 </div>
 {% endfor %}
-</body>
-</html>
+
+</div>
+{% endblock %}

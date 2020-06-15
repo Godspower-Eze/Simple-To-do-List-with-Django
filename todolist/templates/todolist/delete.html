@@ -1,0 +1,12 @@
+{% extends "todolist/base.html"%}
+{% block content %}
+<div class="container" style="border: 2px solid black; padding:10px; margin-top:10px; width:50%">
+    <p> Are you sure you want to delete "{{task.task}}"</p>
+    <hr/>
+    <a class="btn btn-info" href="{% url 'index'%}">No</a>
+    <form style="display:inline;" method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Yes">
+    </form>
+</div>
+{% endblock %}
