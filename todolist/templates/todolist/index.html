@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>
+    Home
+</h1>
+<form method="post" action="/" >
+    {% csrf_token %}
+    {{ form.task }}
+    <button class="btn btn-danger" type="submit">Add</button>
+</form>
+{% for p in task %}
+<div>
+    <p>{{ p.task }}</p>
+</div>
+{% endfor %}
+</body>
+</html>
